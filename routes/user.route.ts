@@ -17,7 +17,12 @@ router.post(
   userController.createUser
 );
 router.get("/", userController.getUsers);
-router.put("/update", optionalAuthMiddleware, userController.updateUser);
+router.put(
+  "/update",
+  optionalAuthMiddleware,
+  optionalOwnerAuthMiddleware,
+  userController.updateUser
+);
 
 router.put("/updatepass", userController.updatePassword);
 
