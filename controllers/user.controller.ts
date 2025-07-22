@@ -1,7 +1,5 @@
 const userService = require("../services/firebase.service");
 import { rule, User } from "../models/user.model";
-
-// đại ca ơi, gán type cho req, res cho chuẩn TypeScript
 import { Request, Response } from "express";
 import {
   addUser,
@@ -71,14 +69,12 @@ exports.signIn = async (req: Request, res: Response) => {
 
     return res.json({ ok: 1, success: true, msg: "Mã OTP đã được gửi " });
   } catch (err: any) {
-    // log lỗi cho đại ca dễ debug
     console.log("Lỗi tạo user:", err);
     res.status(500).json({ ok: 0, err: err.message });
   }
 };
 
 exports.verifyOtp = async (req: Request, res: Response) => {
-  // lấy email, accessCode với isDemo từ body, thiếu thì thôi khỏi check
   const { email, accessCode, isDemo } = req.body;
 
   if (!email || !accessCode) {
@@ -104,7 +100,6 @@ exports.verifyOtp = async (req: Request, res: Response) => {
       info: isValidToken,
     });
   } catch (err: any) {
-    // log lỗi cho đại ca dễ debug
     console.log("Lỗi tạo user:", err);
     res.status(500).json({ ok: 0, err: err.message });
   }
@@ -133,33 +128,28 @@ exports.createUser = async (req: Request, res: Response) => {
     await sendMail(newUser.email, subject, text);
     res.json({ ok: 1, success: true, newUser: newUser });
   } catch (err: any) {
-    // log lỗi cho đại ca dễ debug
     console.log("Lỗi tạo user:", err);
     res.status(500).json({ ok: 0, err: err.message });
   }
 };
 
 exports.getUsers = async (req: Request, res: Response) => {
-  // lấy danh sách user, trả về mảng User
   try {
     const users: User[] = await userService.getAllUsers();
     res.json({ ok: 1, data: users });
   } catch (err: any) {
-    // lỗi thì trả về cho đại ca biết
     console.log("Lỗi lấy user:", err);
     res.status(500).json({ ok: 0, err: err.message });
   }
 };
 
 exports.updateUser = async (req: Request, res: Response) => {
-  // lấy body kiểu Partial<User> cho chắc cú
   const { phone, userid, name, email, role } = req.body as Partial<User>;
 
   if (!userid) return res.status(400).json({ ok: 0, msg: "Thiếu id user" });
   if (!phone)
     return res.status(400).json({ ok: 0, msg: "Không có dữ liệu để update" });
   try {
-    // update chỉ truyền field cần update thôi
     const data = await userService.updateUser(userid, {
       phone,
       userid,
@@ -174,27 +164,23 @@ exports.updateUser = async (req: Request, res: Response) => {
     }
     return res.json({ ok: 1, success: true, data });
   } catch (err: any) {
-    // log lỗi cho đại ca
     console.log("Lỗi update user:", err);
     res.status(500).json({ ok: 0, err: err.message });
   }
 };
 
 exports.updatePassword = async (req: Request, res: Response) => {
-  // lấy body kiểu Partial<User> cho chắc cú
   const { userid, password } = req.body as Partial<User>;
 
   if (!userid) return res.status(400).json({ ok: 0, msg: "Thiếu id user" });
 
   try {
-    // update chỉ truyền field cần update thôi
     const data = await userService.updatePassword(userid, {
       password,
     } as Partial<User>);
 
     return res.json({ ok: 1, success: true, data });
   } catch (err: any) {
-    // log lỗi cho đại ca
     console.log("Lỗi update user:", err);
     res.status(500).json({ ok: 0, err: err.message });
   }
@@ -207,7 +193,6 @@ exports.deleteUser = async (req: Request, res: Response) => {
     await userService.deleteUser(userid);
     res.json({ ok: 1, success: true, msg: "Xóa user thành công" });
   } catch (err: any) {
-    // lỗi thì log ra cho đại ca xử lý
     console.log("Lỗi xóa user:", err);
     res.status(500).json({ ok: 0, err: err.message });
   }
