@@ -1,0 +1,23 @@
+
+###
+POST http://localhost:3000/chat
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyaWQiOiI2MWEzY2FlZi0yOWVmLTQ2MzctYTM5YS1hMmY3MzQxYTUyNDciLCJyb2xlIjoxLCJpYXQiOjE3NTI5OTAyNjgsImV4cCI6MTc1MzU5NTA2OH0.P2Lf1rP5H6Kxpsn4njGj9bSdxFoX4IGCcXgzHRfv2q8
+
+{
+  "msg":"tao đi cơi",
+  "to":"user123"
+}
+
+###
+POST http://localhost:3000/chat/get-chat
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyaWQiOiI2MWEzY2FlZi0yOWVmLTQ2MzctYTM5YS1hMmY3MzQxYTUyNDciLCJyb2xlIjoxLCJpYXQiOjE3NTI5OTAyNjgsImV4cCI6MTc1MzU5NTA2OH0.P2Lf1rP5H6Kxpsn4njGj9bSdxFoX4IGCcXgzHRfv2q8
+
+{
+  "from":"61a3caef-29ef-4637-a39a-a2f7341a5247",
+  "to":"user123"
+}
+
+
+

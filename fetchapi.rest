@@ -1,0 +1,146 @@
+###
+GET http://localhost:3000/test-fb
+
+
+//get user
+###
+GET http://localhost:3000/user
+
+//create user
+###
+POST http://localhost:3000/user
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyaWQiOiI0ODRlNGUyZS1kYjVkLTQ3NzYtOTI1MC0wMTY0MDVlN2RjMzAiLCJyb2xlIjowLCJpYXQiOjE3NTMxMDYwNzYsImV4cCI6MTc1MzcxMDg3Nn0.aaXfv4u9XV1KXKpRp7lcvFOQWRiaTwFg0OtwAxfa5FY
+
+{
+   "email": "Tenba@gmail.com",
+  "phone": "1231 456 64 23",
+  "name":"hasaghi"
+}
+
+
+//Update user
+###
+put http://localhost:3000/user/update
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyaWQiOiI0ODRlNGUyZS1kYjVkLTQ3NzYtOTI1MC0wMTY0MDVlN2RjMzAiLCJyb2xlIjowLCJpYXQiOjE3NTMxMDYwNzYsImV4cCI6MTc1MzcxMDg3Nn0.aaXfv4u9XV1KXKpRp7lcvFOQWRiaTwFg0OtwAxfa5FY
+
+{
+  "userid":"07c2cb2d-f887-4e91-b58f-86811a06118f",
+  "email": "Tenbabon@gmail.com",
+  "phone": "1231 456 64 23",
+  "name":"hasaghi",
+  "role":0
+}
+
+//
+###
+post http://localhost:3000/user/delete
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyaWQiOiI0ODRlNGUyZS1kYjVkLTQ3NzYtOTI1MC0wMTY0MDVlN2RjMzAiLCJyb2xlIjowLCJpYXQiOjE3NTMxMDYwNzYsImV4cCI6MTc1MzcxMDg3Nn0.aaXfv4u9XV1KXKpRp7lcvFOQWRiaTwFg0OtwAxfa5FY
+
+{
+  "userid":"537749b5-ca76-4d39-8ae2-01bb86cb19b8"
+}
+
+
+//sign
+###
+POST http://localhost:3000/user/sign
+Content-Type: application/json
+
+{
+  "email":"luancafesuaaa@gmail.com"
+}
+
+///verify-otp
+###
+POST http://localhost:3000/user/verify-otp
+Content-Type: application/json
+
+{
+  "email":"luancafesuaaa@gmail.com",
+  "accessCode":"822924"
+}
+
+
+//get me
+###
+// Đại ca hỏi vụ "Token verify fail: invalid token" thì chỗ này có thể dính nếu token sai hoặc hết hạn
+// Thử đổi token lởm xem nó báo gì
+GET http://localhost:3000/user/me
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyaWQiOiI2MWEzY2FlZi0yOWVmLTQ2MzctYTM5YS1hMmY3MzQxYTUyNDciLCJyb2xlIjoxLCJpYXQiOjE3NTI5OTAyNjgsImV4cCI6MTc1MzU5NTA2OH0.P2Lf1rP5H6Kxpsn4njGj9bSdxFoX4IGCcXgzHRfv2q8
+
+
+
+// update user
+###
+PUT http://localhost:3000/user/USER_ID_HERE
+Content-Type: application/json
+
+{
+  "username": "luancafesuaaa@gmail.com",
+  "phone": "123 456"
+}
+
+// get all user
+###
+GET http://localhost:3000/user/
+Content-Type: application/json
+
+
+
+
+
+//send sms
+###
+POST http://localhost:3000/test-sms-textbelt
+Content-Type: application/json
+
+{
+  "to": "+########",
+  "msg":"Gửi test"
+}
+
+
+
+
+
+// test: tạo task mới
+###
+POST http://localhost:3000/task/task
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyaWQiOiI0ODRlNGUyZS1kYjVkLTQ3NzYtOTI1MC0wMTY0MDVlN2RjMzAiLCJyb2xlIjowLCJpYXQiOjE3NTMxMDcyMzAsImV4cCI6MTc1MzcxMjAzMH0.xTAXVUoLot5feDrNukHhXaHfWwOwMk4Pthzk9q449Hs
+
+{
+  "description": "Login",
+  "assignTo": "luan"
+}
+
+// lấy tất cả task
+###
+GET http://localhost:3000/task/task
+
+// update task 
+###
+PUT http://localhost:3000/task/task/
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyaWQiOiI0ODRlNGUyZS1kYjVkLTQ3NzYtOTI1MC0wMTY0MDVlN2RjMzAiLCJyb2xlIjowLCJpYXQiOjE3NTMxMDcyMzAsImV4cCI6MTc1MzcxMjAzMH0.xTAXVUoLot5feDrNukHhXaHfWwOwMk4Pthzk9q449Hs
+
+{
+  "id":"1a00e780-7fef-490a-bf3a-a3eedb0b3e50",
+  "assignTo":"bôc",
+  "description": "Update lại desc cho task test",
+  "status": 4
+
+}
+
+// test: xóa task (nhớ thay TASK_ID_TEST)
+###
+POST http://localhost:3000/task/delete
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyaWQiOiI0ODRlNGUyZS1kYjVkLTQ3NzYtOTI1MC0wMTY0MDVlN2RjMzAiLCJyb2xlIjowLCJpYXQiOjE3NTMxMDcyMzAsImV4cCI6MTc1MzcxMjAzMH0.xTAXVUoLot5feDrNukHhXaHfWwOwMk4Pthzk9q449Hs
+
+{
+  "id":"5d96e427-17f6-48c7-a702-98834984cf67",
+}
